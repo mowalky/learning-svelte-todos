@@ -14,21 +14,17 @@
   function focus(el) {
     el.focus();
   }
-  // catch enter key - auto add todo
-  function handleKeydown(event) {
-    key = event.key;
-    if (key == "Enter") addTodo();
-  }
 </script>
 
-<svelte:window on:keydown={handleKeydown} />
 <div class="app">
   <h1>Todos</h1>
 
   {#each todos as todo, index}
-    <input use:focus bind:value={todos[index]} /><button
-      on:click={() => remove(index)}>X</button
-    ><br />
+    <input
+      use:focus
+      bind:value={todos[index]}
+      on:keydown={(e) => e.key === "Enter" && addTodo()}
+    /><button on:click={() => remove(index)}>X</button><br />
   {/each}
   <button disabled={enableAdd} on:click={addTodo}>Add</button>
 </div>

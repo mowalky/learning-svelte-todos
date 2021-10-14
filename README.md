@@ -1,3 +1,3 @@
 # Svelte TODO
 
-Learning svelte
+Learning svelte is fun!
